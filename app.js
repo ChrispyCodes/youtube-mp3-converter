@@ -35,8 +35,8 @@ app.post("/convert-mp3", async (req, res) => {
         const fetchAPI = await fetch(`https://t-one-youtube-converter.p.rapidapi.com/api/v1/createProcess?url=${videoId}`,{
             "method" : "GET",
             "headers": {
-                "x-rapidapi-key": 'bcde001b9dmsh60da92c8d7d30a3p1c504djsna0dff3eb568d',
-                "x-rapidapi-host": 't-one-youtube-converter.p.rapidapi.com'
+                "x-rapidapi-key": process.env.API_KEY,
+                "x-rapidapi-host": process.env.API_HOST
             }
         });
         const fetchResponse = await fetchAPI.json();
