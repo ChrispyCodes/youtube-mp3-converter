@@ -40,12 +40,13 @@ app.post("/convert-mp3", async (req, res) => {
             }
         });
         const fetchResponse = await fetchAPI.json();
-        console.log(fetchResponse);
-
-        if(fetchResponse.message === "success! created!")
-      return res.render("index",{ success : true,  song_title : fetchResponse.YoutubeAPI.titolo, song_link : fetchResponse.YoutubeAPI.urlMp3})
-    else
-      return res.render("index", { success : false, message : fetchResponse.message});
+        
+        if(fetchResponse.YoutubeAPI.urlMp3 != false) {
+            if(fetchResponse.message === "success! created!")
+                return res.render("index",{ success : true,  song_title : fetchResponse.YoutubeAPI.titolo, song_link : fetchResponse.YoutubeAPI.urlMp3})
+        }
+      else
+      return res.render("index", { success : false, message : "oops this video doesn't have a download link, try another..."});
   }
     
 });
